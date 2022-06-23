@@ -20,8 +20,8 @@ def detect_lane(img):
   Estimated_midlane = estimate_midlane(Mid_edge_ROI, config.MaxDist_resized)
 
   # 4. Corectrea imaginiilor incorecte
-  OuterLane_OneSide,Outer_cnts_oneSide,Mid_cnts,Offset_correction, Midlane = correct_inner_edges(OuterLane_TwoSide,Estimated_midlane,OuterLane_Points)#3ms
-  Estimated_midlane,OuterLane_OneSide = extend_lanes(Estimated_midlane,Mid_cnts,Outer_cnts_oneSide,OuterLane_OneSide)
+  OuterLane_OneSide,Outer_cnts_oneSide,Mid_cnts,Offset_correction, Midlane = correct_inner_edges(OuterLane_TwoSide, Estimated_midlane, OuterLane_Points)#3ms
+  Estimated_midlane,OuterLane_OneSide = extend_lanes(Midlane,Mid_cnts,Outer_cnts_oneSide,OuterLane_OneSide)
 
   # 5. Calcularea informatiilor despre drum
   Distance , Curvature, output_frame = lane_info(Mid_edge_ROI,Estimated_midlane,OuterLane_OneSide,img_cropped,Offset_correction)
@@ -58,6 +58,6 @@ def detect_lane(img):
 
 
 
- 
+
 
 

@@ -70,7 +70,7 @@ def largest_contour(gray):
         IN: Imaginea cu banda de mijloc si distanta maxima dintre contururi
         OUT: Imaginea reprezentand banda de mijloc estimata
 """
-def estimate_midlane(image,MaxDistance):
+def estimate_midlane(image,max_dist):
     image_zero = cv2.cvtColor(image,cv2.COLOR_GRAY2BGR)
 
     # 1. Gasirea tuturor contururilor din imagine
@@ -122,7 +122,7 @@ def estimate_midlane(image,MaxDistance):
                             best_contour_a = contour_a
                             best_contour_b = contour_b   
         
-        if prev_min_distance != 100000 and prev_min_distance > MaxDistance:
+        if prev_min_distance != 100000 and prev_min_distance > max_dist:
             break
 
         if type(best_contour_a) != int:

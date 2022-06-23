@@ -79,9 +79,6 @@ def path_cross_midlane(midlane, contours_midlane, contours_outerlane):
 		OUT: Imaginii reprezentand banda exterioara si cea de mijloc modificate dupa caz, conturul benziilor de mijloc si exterioare si offsetul masinii
 """
 def correct_inner_edges(outerlanes,midlane,outerlane_points):
-	#  Fetching the closest outer lane to mid lane is the main goal here
-	
-	# Variable to correct car offset if no YellowLane is Seen in Image 
 	offset = 0
 	outerlane_ret = np.zeros(outerlanes.shape,outerlanes.dtype)
 	
@@ -173,7 +170,7 @@ def correct_inner_edges(outerlanes,midlane,outerlane_points):
 
 		# 8. Desenarea liniei dupa punctele calculate mai sus
 		outerlanes = cv2.line(outerlanes, point_lower, point_top, 255, 2)	
-		
+
 		# 9. Gasirea contururile banezii exterioare desenate
 		contours_outerlane = cv2.findContours(outerlanes, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
 
@@ -200,7 +197,7 @@ def correct_inner_edges(outerlanes,midlane,outerlane_points):
 
 		# 7. Desenarea liniei dupa punctele calculate mai sus
 		midlane = cv2.line(midlane, point_lower, point_top, 255, 2)	
-		
+
 		# 8. Gasirea contururile banezii de mijloc desenate
 		contours_midlane = cv2.findContours(midlane, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
 

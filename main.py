@@ -1,9 +1,9 @@
 from flask import Flask, render_template, Response, request, send_from_directory
+import cv2
+
 from camera import VideoCamera
 from utilities import fromFrameToJPEG
-import os
-import cv2
-import numpy as np
+from lane_following.lane_following import detect_lane
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 
@@ -20,12 +20,10 @@ def gen(camera):
         frame = camera.get_frame()
         # HERE WILL BE THE CONTROL
 
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-        edges = cv2.Canny(gray, 50, 150, None)
+        distance, curvature, out_frame = detect_lane(frame)
 
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + fromFrameToJPEG(canny) + b'\r\n\r\n')
+               b'Content-Type: image/jpeg\r\n\r\n' + fromFrameToJPEG(out_frame) + b'\r\n\r\n')
 
 @app.route('/video_feed')
 def video_feed():
