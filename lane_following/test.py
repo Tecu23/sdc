@@ -79,7 +79,7 @@ def main():
     
     global HLS,src
 
-    frame = cv2.imread("i2.jpg")
+    frame = cv2.imread("test.jpg")
 
     src = frame.copy()
     

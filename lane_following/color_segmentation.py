@@ -2,14 +2,14 @@ import cv2
 import numpy as np
 
 # Constante pentru colori
-hue_low = 48#64#68#86
-lit_low = 68#30#71#87
-sat_low = 14#23#21#30
+hue_low = 86#48#64#68#86
+lit_low = 149#68#30#71#87
+sat_low = 30#14#23#21#30
 
-hue_low_y = 20#29#28#29
-hue_high_y = 38#58#42#58
-lit_low_y = 31#71#36#71
-sat_low_y = 44#43#50#43
+hue_low_y = 29#20#29#28#29
+hue_high_y = 53#38#58#42#58
+lit_low_y = 114#31#71#36#71
+sat_low_y = 43#44#43#50#43
 
 """
     Metoda pentru aplicarea segmentarii de culoare

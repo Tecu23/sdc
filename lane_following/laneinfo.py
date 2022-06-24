@@ -154,7 +154,9 @@ def lane_info(midlane_edge, midlane, outerlane, frame, offset):
 	# 7. Extragem banda de mijloc din imagine
 	lane_projected = cv2.bitwise_and(midlane_mask,lane_projected)
 
-	lane_frame = frame
+	lane_frame = np.copy(frame)
+	# lane_frame.setflags(write=1)
+
 
 	# 8. Desenam banda proiectata pe imagine
 	lane_frame[lane_projected == 255] = lane_frame[lane_projected == 255] + (0,100,0)
