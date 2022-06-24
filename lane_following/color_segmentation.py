@@ -48,7 +48,7 @@ def remove_smaller_contours(image, min_area):
             small_contours.append(cnt)
     
     # 4. Toate contururile gasite le coloram cu negru pentru a le extrage din imaginea binara
-    image = cv2.drawContours(image, small_contours, -1, 0, -1) # [ contour = less then minarea contour, contourIDx, Colour , Thickness ]
+    image = cv2.drawContours(image, small_contours, -1, 0, -1)
             
     return image
 

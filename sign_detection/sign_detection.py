@@ -155,6 +155,6 @@ def detect_Signs(frame,frame_draw):
 
     cv2.putText(frame_draw, sign_track.mode, (10,10), cv2.FONT_HERSHEY_PLAIN, 0.5, (255,255,255), 1)
 
-    sign_detection_tracking(gray.copy(), frame.copy(), frame_draw, model)
+    frame_draw = sign_detection_tracking(gray.copy(), frame.copy(), frame_draw, model)
 
-    return sign_track.mode , sign_track.tracked_class
+    return sign_track.mode , sign_track.tracked_class, frame_draw
