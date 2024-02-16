@@ -1,10 +1,21 @@
+import enum
+import re
 import cv2
 
-from lane_following.color_segmentation import segment_color
-from lane_following.estimation import estimate_midlane
-from lane_following.cleaning import correct_inner_edges
-from lane_following.cleaning import extend_lanes
-from lane_following.laneinfo import lane_info
+# from lane_following.color_segmentation import segment_color
+# from lane_following.estimation import estimate_midlane
+# from lane_following.cleaning import correct_inner_edges
+# from lane_following.cleaning import extend_lanes
+# from lane_following.laneinfo import lane_info
+
+from color_segmentation import segment_color
+from estimation import estimate_midlane
+from cleaning import correct_inner_edges
+from cleaning import extend_lanes
+from laneinfo import lane_info
+
+import skvideo.io
+import numpy as np
 
 Testing = True
 
@@ -47,30 +58,45 @@ def detect_lane(img):
   return Distance, Curvature, output_frame
 
 
-# if __name__ == "__main__":
-#   cap = cv2.VideoCapture('v1.h264')
+if __name__ == "__main__":
+  cap = cv2.VideoCapture('curba_ext.mp4')
 
-#   if (cap.isOpened()== False):
-#     print("Error opening video stream or file")
+  if (cap.isOpened()== False):
+    print("Error opening video stream or file")
 
-#   while(cap.isOpened()):
-#     ret, frame = cap.read()
+  images = []
+  while(cap.isOpened()):
+    ret, frame = cap.read()
 
-#     if ret == True:
-#       cv2.imshow("Input", frame)
-#       _, _, out_frame = detect_lane(frame)
-#       cv2.imshow("Output", out_frame)
+    if ret == True:
+      _, _, out_frame = detect_lane(frame)
+
+      cv2.imshow("Output", out_frame)
+      images.append(out_frame)
+      height,width,layers = out_frame.shape
 
 
-#       if cv2.waitKey(25) & 0xFF == ord('q'):
-#         break
-#     else:
-#       break
+      if cv2.waitKey(25) & 0xFF == ord('q'):
+        break
+    else:
+      break
 
-#   cap.release()
+  video = cv2.VideoWriter("curba_exterior.avi", 0, 1, (width,height))
 
-#   cv2.destroyAllWindows()
+  for image in images:
+    video.write(image)
 
+  cap.release()
+  cv2.destroyAllWindows()
+  video.release()
+
+  # frame = cv2.imread("test.jpg")
+
+  # dist, c, out = detect_lane(frame)
+
+  # cv2.imshow("out",out)
+
+  # cv2.waitKey(0)
 
 
 

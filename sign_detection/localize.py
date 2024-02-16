@@ -17,8 +17,6 @@ def detect_signs(frame):
 
   circles = cv2.HoughCircles(gray,cv2.HOUGH_GRADIENT,1,mindDistanBtwnCircles,param1=CannyHighthresh,param2=NumOfVotesForCircle,minRadius=10,maxRadius=max_rad)
 
-  out_circles = []
-
   if circles is not None:
     circles = np.uint16(np.around(circles))
     
@@ -40,3 +38,14 @@ def detect_signs(frame):
 
     
     return frame_out, circles
+
+
+
+if __name__ == "__main__":
+  frame = cv2.imread("images/localization/img2.jpg")
+
+  frame_out, circles = detect_signs(frame)
+
+  cv2.imshow("Out", frame_out)
+
+  cv2.waitKey(0)

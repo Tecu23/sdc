@@ -75,11 +75,9 @@ if(True):
 
 
 
-def main():
+def main(frame):
     
     global HLS,src
-
-    frame = cv2.imread("test.jpg")
 
     src = frame.copy()
     
@@ -95,4 +93,23 @@ def main():
 
 
 if __name__ == "__main__":
-  main()
+#   main()
+  cap = cv2.VideoCapture('curba_exterior.mp4')
+
+  if (cap.isOpened()== False):
+    print("Error opening video stream or file")
+
+  while(cap.isOpened()):
+    ret, frame = cap.read()
+
+    if ret == True:
+      main(frame)
+
+      if cv2.waitKey(25) & 0xFF == ord('q'):
+        break
+    else:
+      break
+
+  cap.release()
+
+  cv2.destroyAllWindows()

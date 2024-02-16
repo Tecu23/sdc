@@ -124,7 +124,7 @@ def sign_detection_tracking(gray,cimg,frame_draw,model):
             # Selectam puncte
             good_new = p1[st == 1]
             good_old = sign_track.corners[st == 1]
-            # Sesenam noile urme
+            # Desenam noile urme
             for i, (new, old) in enumerate(zip(good_new, good_old)):
                 a, b = (int(x) for x in new.ravel())
                 c, d = (int(x) for x in old.ravel())
